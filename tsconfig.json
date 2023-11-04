@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "outDir": "./dist/js/",
+        "noEmitOnError": true,
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}

@@ -1,20 +1,40 @@
 
-# Aula 01 - JavaScript vs TypeScript
+# Aula 02 - Definindo Tipos
 
-### Compilação de arquivos TS
+### Reorganização dos arquivos
 
-Arquivos TypeScript (.ts) não podem ser executados diretamente no navegador do usuário pois este não compreende arquivos deste tipo. Sendo assim é necessário realizar um processo chamado compilação no qual os arquivos .ts são transformados em arquivos JavaScript (.js).
+:file_folder: /dist (distribution) - arquivos que vao pra produção
 
-```sh
-tsc meu-arquivo.ts
-```
+:file_folder: /src (source) - arquivos que ficam apenas em desenvolvimento
+
+O .ts ficará dentro da pasta /src
 
 O comando tsc aciona o TypeScript Compiler que realiza a compilação de todo o código TS criado transformando-o em JavaScript.
 
 
-### Definindo o tipo de uma variável
+### Configuração do tsconfig.json
 
-Por meio do TypeScript é possível explicitar o tipo que uma variável possui ou deve possuir em seu conteúdo tornando nosso código muito mais previsível e menos suscetível a erros.
-```ts
-let meuNumero: number = 0;
+O arquivo `tsconfig.json` permite que a customização do comportamento que o compilador do TypeScript deverá ter em um determinado projeto.
+
+```json
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "outDir": "./dist/js/",
+        "noEmitOnError": true, //Com essa configuração o compilador irá gerar os arquivos .js correspondentes apenas se nenhum erro de compilação for detectado no código desses arquivos.
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
 ```
+
+### Tipos Primitivos
+
+Há situações em que precisaremos gerar listas de dados de um único tipo. Para isso utilizamos Arrays Tipados os quais nos ajudam a garantir que a lista criada não permitirá a inserção de valores de um tipo diferente daquele definido em sua declaração.
+
+```ts
+const nomesAlunos: string[] = [];
+```
+
+O TS utiliza a sintaxe de dois-pontos (:) para separar o nome da variável de seu tipo explícito e no caso de Arrays, o tipo é seguido de um par de colchetes.

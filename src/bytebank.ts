@@ -4,6 +4,7 @@ const elementoSaldo = document.querySelector(".block-saldo .saldo-valor .valor")
 const elementoFormulario = document.querySelector(".block-nova-transacao form") as HTMLFormElement;
 const elementoTransacoes = document.querySelector(".registro-transacoes") as HTMLElement;
 
+alert("Testando compilação do TS");
 if (elementoSaldo !== null) {
     elementoSaldo.textContent = saldo.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
 }
