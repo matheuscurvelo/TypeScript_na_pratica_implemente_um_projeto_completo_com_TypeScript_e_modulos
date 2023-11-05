@@ -1,11 +1,4 @@
-let saldo = 3000;
-const elementoSaldo = document.querySelector(".block-saldo .saldo-valor .valor");
 const elementoFormulario = document.querySelector(".block-nova-transacao form");
-const elementoTransacoes = document.querySelector(".registro-transacoes");
-alert("Testando compilação do TS");
-if (elementoSaldo !== null) {
-    elementoSaldo.textContent = saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-}
 elementoFormulario.addEventListener('submit', e => {
     e.preventDefault();
     if (elementoFormulario.checkValidity() === false) {
@@ -18,17 +11,17 @@ elementoFormulario.addEventListener('submit', e => {
     let tipoTransacao = inputTipoTransacao.value;
     let valor = inputValor.valueAsNumber;
     let data = new Date(inputData.value);
-    if (tipoTransacao == "Depósito") {
+    if (tipoTransacao == TipoTransacao.DEPOSITO) {
         saldo += valor;
     }
-    else if (tipoTransacao == 'Transferência' || tipoTransacao == 'Pagamento de Boleto') {
+    else if ([TipoTransacao.TRANSFERENCIA, TipoTransacao.PAGAMENTO_BOLETO].includes(tipoTransacao)) {
         saldo -= valor;
     }
     else {
         alert("Tipo de transação inválida");
         return;
     }
-    elementoSaldo.textContent = saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+    elementoSaldo.textContent = formatarMoeda(saldo);
     let novaTransacao = { tipoTransacao, valor, data };
     console.log(novaTransacao);
     elementoFormulario.reset();

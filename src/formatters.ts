@@ -1,9 +1,3 @@
-
-# Aula 03 - Aplicando o TypeScript
-
-### Utilizando funções de formatação em TypeScript
-
-```ts
 function formatarMoeda(valor: number): string {
     return valor.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
 }
@@ -23,4 +17,3 @@ function formatarData(data: Date, formato: FormatoData = FormatoData.PADRAO): st
 
     return data.toLocaleDateString("pt-br");
 }
-```
