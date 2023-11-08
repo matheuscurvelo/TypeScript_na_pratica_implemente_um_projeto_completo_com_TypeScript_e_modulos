@@ -1,26 +1,19 @@
 
-# Aula 03 - Aplicando o TypeScript
+# Aula 04 - Modularizando o TypeScript
 
-### Utilizando funções de formatação em TypeScript
+### Importação e exportação de módulos
+
+Para importar uma função chamada depositar exportada como padrão do módulo saldo.ts e utilizá-la no módulo transacoes.ts é preciso importar da seguinte forma:
 
 ```ts
-function formatarMoeda(valor: number): string {
-    return valor.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
-}
-
-function formatarData(data: Date, formato: FormatoData = FormatoData.PADRAO): string {
-    if (formato === FormatoData.DIA_SEMANA_DIA_MES_ANO) {
-        return data.toLocaleDateString("pt-br", {
-            weekday: "long",
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        });
-    }
-    else if (formato === FormatoData.DIA_MES) {
-        return data.toLocaleDateString("pt-br", { day: "2-digit", month: "2-digit" });
-    }
-
-    return data.toLocaleDateString("pt-br");
+export default depositar(valor: number): void {
+    console.log(`valor ${valor} depositado`);
 }
 ```
+
+```ts
+import depositar from "./saldo.js";
+depositar(1000);
+```
+
+Esta é a forma correta de importar e utilizar a função depositar do módulo saldo.ts no módulo transacoes.ts, considerando que a função depositar foi exportada como padrão no módulo saldo.ts.
