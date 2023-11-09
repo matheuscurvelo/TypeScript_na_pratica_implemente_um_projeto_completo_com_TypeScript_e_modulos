@@ -1,19 +1,17 @@
 
-# Aula 04 - Modularizando o TypeScript
+# Aula 04 - Finalizando o projeto do TypeScript
 
-### Importação e exportação de módulos
+### Salvando dados no localStorage
 
-Para importar uma função chamada depositar exportada como padrão do módulo saldo.ts e utilizá-la no módulo transacoes.ts é preciso importar da seguinte forma:
-
-```ts
-export default depositar(valor: number): void {
-    console.log(`valor ${valor} depositado`);
-}
-```
+A função JSON.parse() é utilizada para converter o saldo e as transações armazenadas no localStorage em objetos JavaScript, enquanto o localStorage é usado para armazenar persistentemente essas informações no navegador do usuário.
 
 ```ts
-import depositar from "./saldo.js";
-depositar(1000);
-```
+let saldo: number = JSON.parse(localStorage.getItem("saldo")) || 0;
+const transacoes: Transacao[] = JSON.parse(localStorage.getItem("transacoes"), (key: string, value: string) => {
+    if (key === "data") {
+        return new Date(value);
+    }
 
-Esta é a forma correta de importar e utilizar a função depositar do módulo saldo.ts no módulo transacoes.ts, considerando que a função depositar foi exportada como padrão no módulo saldo.ts.
+    return value;
+}) || [];
+```
